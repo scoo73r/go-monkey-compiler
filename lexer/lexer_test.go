@@ -3,10 +3,11 @@ package lexer
 import (
 	"testing"
 
-	"monkeyScooter/token"
+	"scooter/monkey/token"
 )
 
 func TestNextToken(t *testing.T) {
+
 	input := `=+(){},;`
 
 	tests := []struct {

@@ -1,1 +1,1 @@
-module monkeyScooter
+module scooter/monkey
