@@ -26,24 +26,75 @@ func TestNextToken(t *testing.T) {
 		
 		expectedLiteral string
 	}{
+		{token.LET, "let"},
+
+		{token.IDENTIFIER, "five"},
+	
 		{token.ASSIGN, "="},
 
-		{token.PLUS, "+"},
+		{token.INT, "5"},
+
+		{token.SEMICOLON, ";"},
+
+		{token.LET, "let"},
+
+		{token.IDENTIFIER, "ten"},
 	
-		{token.LPAREN, "("},
+		{token.ASSIGN, "="},
+
+		{token.INT, "10"},
+
+		{token.SEMICOLON, ";"},
+
+		{token.LET, "let"},
+
+		{token.IDENTIFIER, "add"},
+
+		{token.ASSIGN, "="},
+
+		{token.IDENTIFIER, "x"},
+
+		{token.COMMA, ","},
+
+		{token.IDENTIFIER, "y"},
 
 		{token.RPAREN, ")"},
 
 		{token.LBRACE, "{"},
 
-		{token.RBRACE, "}"},
-     
-		{token.COMMA, ","},
+		{token.IDENTIFIER, "x"},
+
+		{token.PLUS, "+"},
+
+		{token.IDENTIFIER, "y"},
 
 		{token.SEMICOLON, ";"},
 
-		{token.EOF, ""},
-	
+		{token.RBRACE, "}"},
+
+		{token.SEMICOLON, ";"},
+
+		{token.LET, "let"},
+
+		{token.IDENTIFIER, "result"},
+
+		{token.ASSIGN, "="},
+
+		{token.IDENTIFIER, "add"},
+
+		{token.LPAREN, "("},
+
+		{token.IDENTIFIER, "five"},
+
+		{token.COMMA, ","},
+
+		{token.IDENTIFIER, "ten"},
+
+		{token.RPAREN, ")"},
+
+		{token.SEMICOLON, ";"},
+
+        {token.EOF, ""},
 	}
 
 	l := New(input)
