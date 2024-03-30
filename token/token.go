@@ -11,14 +11,19 @@ const
 	// identifiers and literals
 
 	IDENTIFIER = "IDENTIFIER" // add, foobar, x, y
-
 	INT = "INT"
 
 	//operators
 
 	ASSIGN = "="
-
 	PLUS = "+"
+	MINUS = "-"
+	BANG = "!"
+	ASTERISK = "*"
+	SLASH = "/"
+	LT = "<"
+	GT = ">"
+
 
 	//delimiters
 
@@ -37,10 +42,15 @@ const
 	// keywords
 
 	FUNCTION = "FUNCTION"
-
 	LET = "LET"
+	TRUE = "TRUE"
+	FALSE = "FALSE"
+	IF = "IF"
+	ELSE = "ELSE"
+	RETURN = "RETURN"
 
-
+	EQ = "=="
+	NOT_EQ = "!="
 )
 
 type Token struct {
@@ -52,6 +62,11 @@ type Token struct {
 var keywords = map[string]TokenType{
 	"fn": FUNCTION,
 	"let": LET,
+	"true": TRUE,
+	"false": FALSE,
+	"if": IF,
+	"else": ELSE,
+	"return":RETURN,
 }
 
 func LookupIdentifier (identifier string) TokenType {
