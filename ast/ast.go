@@ -3,6 +3,7 @@ package ast
 import (
 	"bytes"
 	"scooter/monkey/token"
+	"strings"
 )
 
 type Node interface {
@@ -161,3 +162,68 @@ type Boolean struct {
 func (b *Boolean) expressionNode () {}
 func (b *Boolean) TokenLiteral() string { return b.Token.Literal}
 func (b *Boolean) String() string { return b.Token.Literal}
+
+type IfExpression struct {
+	Token token.Token
+	Condition Expression
+	Consequence *BlockStatement
+	Alternative *BlockStatement
+}
+
+func (ie *IfExpression) expressionNode () {}
+func (ie *IfExpression) TokenLiteral() string { return ie.Token.Literal}
+func (ie *IfExpression) String() string { 
+	var out bytes.Buffer
+
+	out.WriteString("if")
+	out.WriteString(ie.Condition.String())
+	out.WriteString(" ")
+	out.WriteString(ie.Condition.String())
+
+	if ie.Alternative != nil {
+		out.WriteString("else ")
+		out.WriteString(ie.Alternative.String())
+	}
+	return out.String()
+}
+
+type BlockStatement struct {
+	Token token.Token
+	Statements []Statement
+}
+
+func (bs *BlockStatement) statementNode() {}
+func (bs *BlockStatement) tokenLiteral() string { return bs.Token.Literal}
+func (bs *BlockStatement) String() string {
+	var out bytes.Buffer
+
+	for _, s := range bs.Statements {
+		out.WriteString(s.String())
+	}
+	return out.String()
+}
+
+type FunctionLiteral struct {
+	Token token.Token //the 'fn' token
+	Parameters []*Identifier
+	Body *BlockStatement
+}
+
+func (f1 *FunctionLiteral) expressionNode() {}
+func (f1 *FunctionLiteral) TokenLiteral() string { return f1.Token.Literal}
+func (f1 *FunctionLiteral) String() string {
+	var out bytes.Buffer
+
+	params :=[]string{}
+	for _, p := range f1.Parameters{
+		params = append(params, p.String())
+	}
+
+	out.WriteString(f1.TokenLiteral())
+	out.WriteString("(")
+	out.WriteString(strings.Join(params, ", "))
+	out.WriteString(") ")
+	out.WriteString(f1.Body.String())
+
+	return out.String()
+}
