@@ -90,16 +90,16 @@ func (rs *ReturnStatement) String() string {
 	return out.String()
 }
 
-type ExpresssionStatement struct {
+type ExpressionStatement struct {
 	Token token.Token
-	Expresssion Expression
+	Expression Expression
 }
 
-func (es *ExpresssionStatement) statementNode() {}
-func (es *ExpresssionStatement) TokenLiteral() string {return es.Token.Literal } 
-func (es *ExpresssionStatement) String() string {
-	if es.Expresssion != nil {
-		return es.Expresssion.String()
+func (es *ExpressionStatement) statementNode() {}
+func (es *ExpressionStatement) TokenLiteral() string {return es.Token.Literal } 
+func (es *ExpressionStatement) String() string {
+	if es.Expression != nil {
+		return es.Expression.String()
 	}
 	return ""
 }

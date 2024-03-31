@@ -171,9 +171,9 @@ func (p *Parser) registerInfix(tokenType token.TokenType, fn infixParseFn) {
 	p.infixParseFns[tokenType] = fn
 }
 
-func (p *Parser) parseExpressionStatement() *ast.ExpresssionStatement {
-	stmt := &ast.ExpresssionStatement{Token: p.curToken}
-	stmt.Expresssion = p.parseExpression(LOWEST)
+func (p *Parser) parseExpressionStatement() *ast.ExpressionStatement {
+	stmt := &ast.ExpressionStatement{Token: p.curToken}
+	stmt.Expression = p.parseExpression(LOWEST)
 
 	if p.peekTokenIs(token.SEMICOLON) {
 		p.nextToken()
