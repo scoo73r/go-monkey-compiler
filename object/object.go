@@ -1,6 +1,9 @@
 package object
 
-import "fmt"
+import (
+	"fmt"
+	"scooter/monkey/ast"
+)
 
 const (
 	INTEGER_OBJ = "INTEGER"
@@ -8,6 +11,7 @@ const (
 	NULL_OBJ = "NULL"
 	RETURN_VALUE_OBJ = "RETURN_VALUE"
 	ERROR_OBJ = "ERROR"
+	FUNCTION_OBJ = "FUNCTION"
 )
 
 func NewEnvironment() *Environment {
@@ -64,3 +68,9 @@ type Error struct {
 
 func (e *Error) Type() ObjectType {return ERROR_OBJ}
 func (e *Error) Inspect() string { return "Error: " + e.Message}
+
+type Function struct {
+	Paramaters []*ast.Identifier
+	Body *ast.BlockStatement
+	Env *Environment
+}
